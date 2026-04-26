@@ -1,0 +1,22 @@
+# 虛擬環境
+venv/
+venv_backup_20260423_193947/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# 環境變數（含 API Key，不納入版控）
+.env
+
+# 資料庫（執行時自動產生）
+data.db
+
+# 輸出資料（執行時自動產生）
+taiwan_weekly_forecast.json
+taiwan_weekly_forecast.csv
+taiwan_weekly_forecast_raw.json
+temperature_extract.json
+temperature_highestnlowest.json
+sample_raw.json
