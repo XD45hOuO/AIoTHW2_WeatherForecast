@@ -12,8 +12,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # ── 環境設定 ──────────────────────────────────────────────────────────────────
 load_dotenv()
 
-API_KEY  = os.getenv("CWA_API_KEY")
 BASE_URL = "https://opendata.cwa.gov.tw/api/v1/rest/datastore"
+
+
+def _api_key() -> str:
+    """讀取 API Key（支援本機 .env 與 Streamlit Cloud st.secrets）。"""
+    return os.getenv("CWA_API_KEY", "")
 
 # CWA 各地區「一週天氣預報」資料集 ID
 REGIONS: dict[str, str] = {
@@ -34,7 +38,7 @@ OUTPUT_CSV    = "taiwan_weekly_forecast.csv"
 def fetch_forecast(region: str, dataset_id: str) -> dict:
     """呼叫 CWA API 取得指定地區一週天氣預報的原始 JSON。"""
     url    = f"{BASE_URL}/{dataset_id}"
-    params = {"Authorization": API_KEY, "format": "JSON"}
+    params = {"Authorization": _api_key(), "format": "JSON"}
 
     print(f"\n{'─' * 60}")
     print(f"[{region}] 正在請求 → {url}")

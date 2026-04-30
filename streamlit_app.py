@@ -1,8 +1,14 @@
 import json
+import os
 import sqlite3
 from pathlib import Path
 
 import streamlit as st
+
+# Streamlit Cloud 使用 st.secrets；本機使用 .env
+# 必須在匯入 cwa_forecast 之前設定，讓 _api_key() 能讀到正確的值
+if "CWA_API_KEY" in st.secrets:
+    os.environ.setdefault("CWA_API_KEY", st.secrets["CWA_API_KEY"])
 
 # 從現有模組匯入抓取、解析、資料庫函式
 from cwa_forecast import fetch_forecast, parse_region, REGIONS
