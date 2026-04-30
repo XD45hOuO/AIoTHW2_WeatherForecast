@@ -249,3 +249,48 @@ Please write a README.md of how to run this program and post to https://github.c
 
 **Assistant:**
 建立本檔案（CHAT.md），記錄所有對話的完整摘要。
+---
+
+## 對話 19 — 部署至 Streamlit Cloud
+
+**User:**
+請幫我把這個 demo 推到 Streamlit app 上。
+
+**Assistant:**
+為支援 Streamlit Cloud 部署，進行以下修改並 push 至 GitHub：
+
+1. **`requirements.txt`** — 補上缺少的依賴：
+   ```
+   streamlit>=1.44,<2
+   requests>=2.28
+   python-dotenv>=1.0
+   urllib3>=1.26
+   ```
+
+2. **`cwa_forecast.py`** — 將模組層級的 `API_KEY = os.getenv(...)` 改為動態函式，避免匯入時就固定值：
+   ```python
+   def _api_key() -> str:
+       return os.getenv("CWA_API_KEY", "")
+   ```
+
+3. **`streamlit_app.py`** — 在匯入 `cwa_forecast` 之前，將 `st.secrets` 注入環境變數，相容本機 `.env` 與雲端 `st.secrets`：
+   ```python
+   if "CWA_API_KEY" in st.secrets:
+       os.environ.setdefault("CWA_API_KEY", st.secrets["CWA_API_KEY"])
+   ```
+
+Push 成功後，提供 Streamlit Cloud 部署步驟：
+- 前往 https://share.streamlit.io，以 GitHub 帳號登入
+- New app → Repository: `XD45hOuO/AIoTHW2_WeatherForecast`，Branch: `master`，Main file: `streamlit_app.py`
+- Advanced settings → Secrets 填入：`CWA_API_KEY = "你的CWA金鑰"`
+- 點選 Deploy
+
+---
+
+## 對話 20 — 更新 CHAT.md
+
+**User:**
+請幫我把新增的聊天紀錄記錄到 CHAT.md。
+
+**Assistant:**
+在 CHAT.md 末尾新增對話 19（Streamlit Cloud 部署）與對話 20（本筆記錄），並 push 至 GitHub。
