@@ -2,6 +2,8 @@
 
 A Python project that fetches Taiwan's weekly weather forecast from the CWA (Central Weather Administration) Open Data API, stores the data in SQLite, and visualises it with a Streamlit web app.
 
+live demo: https://aiothw2w-5ahxvovf5p9rfxrgcaywyf.streamlit.app/
+
 ## Project Structure
 
 ```
