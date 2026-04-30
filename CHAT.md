@@ -294,3 +294,37 @@ Push 成功後，提供 Streamlit Cloud 部署步驟：
 
 **Assistant:**
 在 CHAT.md 末尾新增對話 19（Streamlit Cloud 部署）與對話 20（本筆記錄），並 push 至 GitHub。
+
+---
+
+## 對話 21 — 執行 Streamlit Cloud 部署流程
+
+**User:**
+請依照以下步驟完成 Streamlit 部署：
+1. 前往 https://share.streamlit.io 並登入（用 GitHub 帳號）
+2. 點選 "New app" → 填入 Repository / Branch / Main file path
+3. 點選 "Advanced settings" → Secrets，貼入 CWA_API_KEY
+4. 點選 "Deploy"，等待部署完成。
+
+**Assistant:**
+自動讀取 `.env` 取得 CWA API 金鑰（`CWA-0AE80805-0D93-4073-A33D-103AD4734FE3`），透過瀏覽器自動化操作完成部署流程：
+
+- Repository：`XD45hOuO/AIoTHW2_WeatherForecast`
+- Branch：`master`
+- Main file：`streamlit_app.py`
+- Secrets：`CWA_API_KEY = "CWA-0AE80805-0D93-4073-A33D-103AD4734FE3"`
+
+部署成功，App 已上線：  
+🔗 https://aiothw2w-5ahxvovf5p9rfxrgcaywyf.streamlit.app/
+
+截圖確認 App 正常顯示「台灣一週氣溫預報」，地區選擇中部，7 天預報，最低均溫 20.3°C、最高均溫 28.4°C，折線圖正常呈現。
+
+---
+
+## 對話 22 — 更新 CHAT.md
+
+**User:**
+請幫我把這段對話放到 CHAT.md 中。
+
+**Assistant:**
+在 CHAT.md 末尾新增對話 21（Streamlit Cloud 正式部署）與對話 22（本筆記錄），完成紀錄更新。
